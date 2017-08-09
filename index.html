@@ -78,7 +78,7 @@
 			var rC = timeContent.querySelectorAll('.result-content');
 			var len = lC.length;
 			var arr = ['\\+', '\\,', '\\w', '\\s', '[\\u4e00-\\u9fa5]'];
-			btn.addEventListener('click',function(){				
+			btn.addEventListener('click',function(){
 				for(var i=0;i<len;i++){
 					var reg = new RegExp('(\\d{4})'+arr[i]+'(\\d{2})'+arr[i]+'(\\d{2})');
 					rC[i].innerHTML = lC[i].innerHTML.replace(reg ,'$1-$2-$3');
@@ -97,6 +97,7 @@
 				<span>格式化后日期</span>
 				<div class="result-content"></div>
 			</div>
+			
 			<div class="time-List">
 				<span>原日期</span>
 				<div class="list-content">2016,06,02</div>
