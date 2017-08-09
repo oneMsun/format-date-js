@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>格式化日期</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		.container{
+			width: 440px;
+			height: 588px;
+			background:url(images/bgImg.png) no-repeat;
+			position: relative;
+			top: 20px;
+			margin:0 auto;
+		}
+		.btn{
+			position: absolute;
+			top: 224px;
+			left: calc(50% - 89px);
+			width: 178px;
+			height: 35px;
+			background-color: #ff6f71;
+			color: #fff;
+			border:none;
+			outline: 0;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		.btn:hover{
+			background-color: #ff589b;
+		}
+		.time-content{
+			position: absolute;
+			left: calc(50% - 175px);
+			top: 286px;
+		}
+		.time-List{
+			width: 100%;
+			float: left;
+			margin-bottom: 20px;
+		}
+		.time-content  .time-List div,.time-content .time-List span{
+			float: left;
+			flex: 1;
+			margin-right: 8px;
+			font-size: 14px;
+		}
+		.time-content .time-List  .list-content{
+			background-color: #ccc;
+			border: 1px solid #ccc;
+			width: 94px;
+			height: 20px;
+		}
+		.time-content .time-List  .result-content{
+			background-color: #fff;
+			border: 1px solid #e73965;
+			width: 100px;
+			height: 20px;
+		}
+		.time-content .time-List div{
+			padding: 5px 2px;
+			border-radius: 4px;
+			align-items: center;
+			text-align: center;
+		}
+		.time-content .time-List span{
+			margin-top: 6px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.querySelector('.btn');
+			var timeContent = document.querySelector('.time-content');
+			var lC = timeContent.querySelectorAll('.list-content');
+			var rC = timeContent.querySelectorAll('.result-content');
+			var len = lC.length;
+			var arr = ['\\+', '\\,', '\\w', '\\s', '[\\u4e00-\\u9fa5]'];
+			btn.addEventListener('click',function(){				
+				for(var i=0;i<len;i++){
+					var reg = new RegExp('(\\d{4})'+arr[i]+'(\\d{2})'+arr[i]+'(\\d{2})');
+					rC[i].innerHTML = lC[i].innerHTML.replace(reg ,'$1-$2-$3');
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<button class="btn">点击一键格式化</button>
+		<div class="time-content">
+			<div class="time-List">
+				<span>原日期</span>
+				<div class="list-content">2016+06+02</div>
+				<span>格式化后日期</span>
+				<div class="result-content"></div>
+			</div>
+			<div class="time-List">
+				<span>原日期</span>
+				<div class="list-content">2016,06,02</div>
+				<span>格式化后日期</span>
+				<div class="result-content"></div>
+			</div>
+			<div class="time-List">
+				<span>原日期</span>
+				<div class="list-content">2016y06m02</div>
+				<span>格式化后日期</span>
+				<div class="result-content"></div>
+			</div>
+			<div class="time-List">
+				<span>原日期</span>
+				<div class="list-content">2016 06 02</div>
+				<span>格式化后日期</span>
+				<div class="result-content"></div>
+			</div>
+			<div class="time-List">
+				<span>原日期</span>
+				<div class="list-content">2016年06月02</div>
+				<span>格式化后日期</span>
+				<div class="result-content"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
